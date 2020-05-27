@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Main</title>
+  <title>ABNotSandboxed</title>
   <style>body { padding: 0; margin: 0; }</style>
 </head>
 
@@ -4369,13 +4369,6 @@ function _Browser_load(url)
 		}
 	}));
 }
-var $author$project$Main$Model = F3(
-	function (counterValue, increaseAmount, textFieldContent) {
-		return {counterValue: counterValue, increaseAmount: increaseAmount, textFieldContent: textFieldContent};
-	});
-var $author$project$Main$initialModel = function (value) {
-	return A3($author$project$Main$Model, value, 0, '');
-};
 var $elm$core$Basics$EQ = {$: 'EQ'};
 var $elm$core$Basics$GT = {$: 'GT'};
 var $elm$core$Basics$LT = {$: 'LT'};
@@ -5164,29 +5157,33 @@ var $elm$core$Task$perform = F2(
 			$elm$core$Task$Perform(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
+var $elm$browser$Browser$application = _Browser_application;
+var $author$project$ABNotSandboxed$Model = F3(
+	function (counterValue, increaseAmount, textFieldContent) {
+		return {counterValue: counterValue, increaseAmount: increaseAmount, textFieldContent: textFieldContent};
+	});
+var $author$project$ABNotSandboxed$initialModel = function (value) {
+	return A3($author$project$ABNotSandboxed$Model, value, 0, '');
+};
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
+var $author$project$ABNotSandboxed$init = F3(
+	function (_v0, _v1, _v2) {
+		return _Utils_Tuple2(
+			$author$project$ABNotSandboxed$initialModel(0),
+			$elm$core$Platform$Cmd$none);
+	});
+var $author$project$ABNotSandboxed$Emptiness = {$: 'Emptiness'};
+var $elm$core$Basics$always = F2(
+	function (a, _v0) {
+		return a;
+	});
+var $author$project$ABNotSandboxed$onUrlChange = $elm$core$Basics$always($author$project$ABNotSandboxed$Emptiness);
+var $author$project$ABNotSandboxed$onUrlRequest = $elm$core$Basics$always($author$project$ABNotSandboxed$Emptiness);
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
-var $elm$browser$Browser$sandbox = function (impl) {
-	return _Browser_element(
-		{
-			init: function (_v0) {
-				return _Utils_Tuple2(impl.init, $elm$core$Platform$Cmd$none);
-			},
-			subscriptions: function (_v1) {
-				return $elm$core$Platform$Sub$none;
-			},
-			update: F2(
-				function (msg, model) {
-					return _Utils_Tuple2(
-						A2(impl.update, msg, model),
-						$elm$core$Platform$Cmd$none);
-				}),
-			view: impl.view
-		});
-};
-var $author$project$Main$update = F2(
+var $author$project$ABNotSandboxed$subscriptions = $elm$core$Basics$always($elm$core$Platform$Sub$none);
+var $author$project$ABNotSandboxed$sandboxedUpdate = F2(
 	function (msg, model) {
 		switch (msg.$) {
 			case 'Increase':
@@ -5208,21 +5205,29 @@ var $author$project$Main$update = F2(
 				} else {
 					return model;
 				}
-			default:
+			case 'ChangeTextField':
 				var value = msg.a;
 				return _Utils_update(
 					model,
 					{textFieldContent: value});
+			default:
+				return model;
 		}
 	});
-var $author$project$Main$ChangeIncreaseAmount = function (a) {
+var $author$project$ABNotSandboxed$update = F2(
+	function (msg, model) {
+		return _Utils_Tuple2(
+			A2($author$project$ABNotSandboxed$sandboxedUpdate, msg, model),
+			$elm$core$Platform$Cmd$none);
+	});
+var $author$project$ABNotSandboxed$ChangeIncreaseAmount = function (a) {
 	return {$: 'ChangeIncreaseAmount', a: a};
 };
-var $author$project$Main$ChangeTextField = function (a) {
+var $author$project$ABNotSandboxed$ChangeTextField = function (a) {
 	return {$: 'ChangeTextField', a: a};
 };
-var $author$project$Main$Decrease = {$: 'Decrease'};
-var $author$project$Main$Increase = {$: 'Increase'};
+var $author$project$ABNotSandboxed$Decrease = {$: 'Decrease'};
+var $author$project$ABNotSandboxed$Increase = {$: 'Increase'};
 var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$hr = _VirtualDom_node('hr');
@@ -5279,7 +5284,7 @@ var $elm$html$Html$Events$onInput = function (tagger) {
 };
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $author$project$Main$view = function (model) {
+var $author$project$ABNotSandboxed$sandboxedView = function (model) {
 	return A2(
 		$elm$html$Html$div,
 		_List_Nil,
@@ -5302,14 +5307,14 @@ var $author$project$Main$view = function (model) {
 						$elm$html$Html$input,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onInput($author$project$Main$ChangeIncreaseAmount)
+								$elm$html$Html$Events$onInput($author$project$ABNotSandboxed$ChangeIncreaseAmount)
 							]),
 						_List_Nil),
 						A2(
 						$elm$html$Html$button,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onClick($author$project$Main$Increase)
+								$elm$html$Html$Events$onClick($author$project$ABNotSandboxed$Increase)
 							]),
 						_List_fromArray(
 							[
@@ -5325,7 +5330,7 @@ var $author$project$Main$view = function (model) {
 						$elm$html$Html$button,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onClick($author$project$Main$Decrease)
+								$elm$html$Html$Events$onClick($author$project$ABNotSandboxed$Decrease)
 							]),
 						_List_fromArray(
 							[
@@ -5349,22 +5354,27 @@ var $author$project$Main$view = function (model) {
 						$elm$html$Html$input,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onInput($author$project$Main$ChangeTextField)
+								$elm$html$Html$Events$onInput($author$project$ABNotSandboxed$ChangeTextField)
 							]),
 						_List_Nil)
 					]))
 			]));
 };
-var $author$project$Main$main = $elm$browser$Browser$sandbox(
-	{
-		init: $author$project$Main$initialModel(0),
-		update: $author$project$Main$update,
-		view: $author$project$Main$view
-	});
-_Platform_export({'Main':{'init':$author$project$Main$main(
+var $author$project$ABNotSandboxed$view = function (model) {
+	return {
+		body: _List_fromArray(
+			[
+				$author$project$ABNotSandboxed$sandboxedView(model)
+			]),
+		title: 'Title'
+	};
+};
+var $author$project$ABNotSandboxed$main = $elm$browser$Browser$application(
+	{init: $author$project$ABNotSandboxed$init, onUrlChange: $author$project$ABNotSandboxed$onUrlChange, onUrlRequest: $author$project$ABNotSandboxed$onUrlRequest, subscriptions: $author$project$ABNotSandboxed$subscriptions, update: $author$project$ABNotSandboxed$update, view: $author$project$ABNotSandboxed$view});
+_Platform_export({'ABNotSandboxed':{'init':$author$project$ABNotSandboxed$main(
 	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
 
-  var app = Elm.Main.init({ node: document.getElementById("elm") });
+  var app = Elm.ABNotSandboxed.init({ node: document.getElementById("elm") });
 }
 catch (e)
 {

@@ -1,21 +1,17 @@
-module Main exposing (..)
+module ABNotSandboxed exposing (main)
 
-import Browser exposing (sandbox)
+import Browser
+import Browser.Navigation
 import Html exposing (Html, button, div, input, hr, text)
 import Html.Events exposing (onClick, onInput)
-
-
-
--- implementare Decrease
--- implementare Increase di step maggiori
--- aggiungere campo nuovo al model e modificarlo tramite un input text
-
+import Url
 
 type Msg
     = Increase
     | Decrease
     | ChangeIncreaseAmount String
     | ChangeTextField String
+    | Emptiness
 
 
 type alias Model =
@@ -26,21 +22,39 @@ type alias Model =
      }
 
 
+init : flags -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
+init _ _ _ = (initialModel 0, Cmd.none)
+
 initialModel : Int -> Model
 initialModel value =
     Model value 0 ""
 
 main : Program () Model Msg
 main =
-    sandbox
-        { init = initialModel 0
-        , view = view
-        , update = update
-        }
+    Browser.application
+    { init = init
+    , onUrlChange = onUrlChange
+    , onUrlRequest = onUrlRequest
+    , subscriptions = subscriptions
+    , update = update
+    , view = view
+    }
+
+onUrlChange : Url.Url -> Msg
+onUrlChange = always Emptiness
+
+onUrlRequest : Browser.UrlRequest -> Msg
+onUrlRequest = always Emptiness
+
+subscriptions : Model -> Sub Msg
+subscriptions = always Sub.none
 
 
-update : Msg -> Model -> Model
-update msg model =
+update : Msg -> Model ->  ( Model, Cmd Msg )
+update msg model = ( sandboxedUpdate msg model, Cmd.none )
+
+sandboxedUpdate : Msg -> Model -> Model
+sandboxedUpdate msg model =
     case msg of
         Increase ->
             { model | counterValue = model.counterValue + model.increaseAmount }
@@ -56,8 +70,14 @@ update msg model =
         ChangeTextField value ->
             {model | textFieldContent = value}
 
-view : Model -> Html Msg
-view model =
+        Emptiness -> model
+
+
+view : Model -> Browser.Document Msg
+view model =  {title="Title", body = [sandboxedView model]}
+
+sandboxedView : Model -> Html Msg
+sandboxedView model =
     div []
         [ div [] [text (String.fromInt model.counterValue)]
         , div [] [
