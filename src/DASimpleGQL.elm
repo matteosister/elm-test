@@ -1,4 +1,4 @@
-module ADSimpleGQL exposing (main)
+module DASimpleGQL exposing (main)
 
 import Html exposing (Html, button, div, input, hr, text)
 import Html.Events exposing (onClick, onInput)
@@ -40,12 +40,17 @@ update msg model =
             ( response, Cmd.none )
         _ -> (model, Cmd.none)
 
-show : Model -> String
-show model = case model of
-    RemoteData.Failure f -> Debug.toString <| f
-        
+processMaybeLists : Maybe (List a) -> Html msg
+processMaybeLists maybe = case maybe of
+    Just l -> Html.div[](List.map (\x -> Html.div[][ text (Debug.toString x)]) l )
+    Nothing -> text ""
 
-    response -> "Ciao" ++ (Debug.toString <| response)
+displayResult : Model -> Html msg
+displayResult model = case model of
+    RemoteData.Failure f -> text (Debug.toString <| f)
+        
+    RemoteData.Success response -> processMaybeLists response
+    other -> text (Debug.toString <| other)
         
 
 view : Model -> Browser.Document Msg
@@ -57,7 +62,7 @@ view model = {
             Html.button [ onClick RunQuery ] [text "Run query"]
         ]
         , Html.div[][
-            text <| show <| model
+            displayResult model
         ]
         ]
     }

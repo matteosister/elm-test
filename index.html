@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>ADSimpleGQL</title>
+  <title>DASimpleGQL</title>
   <style>body { padding: 0; margin: 0; }</style>
 </head>
 
@@ -5489,7 +5489,7 @@ var $elm$core$Task$perform = F2(
 	});
 var $elm$browser$Browser$application = _Browser_application;
 var $krisajenkins$remotedata$RemoteData$Loading = {$: 'Loading'};
-var $author$project$ADSimpleGQL$GotResponse = function (a) {
+var $author$project$DASimpleGQL$GotResponse = function (a) {
 	return {$: 'GotResponse', a: a};
 };
 var $elm$core$Basics$composeR = F3(
@@ -5512,7 +5512,7 @@ var $krisajenkins$remotedata$RemoteData$fromResult = function (result) {
 		return $krisajenkins$remotedata$RemoteData$Success(x);
 	}
 };
-var $author$project$ADSimpleGQL$Image = F2(
+var $author$project$DASimpleGQL$Image = F2(
 	function (id, size) {
 		return {id: id, size: size};
 	});
@@ -5890,7 +5890,7 @@ var $author$project$Gql$DockerAPI$Object$Image$size = A4(
 	_List_Nil,
 	$elm$json$Json$Decode$nullable(
 		$author$project$Gql$DockerAPI$Scalar$unwrapCodecs($author$project$Gql$DockerAPI$ScalarCodecs$codecs).codecLong.decoder));
-var $author$project$ADSimpleGQL$imageSelection = A3($dillonkearns$elm_graphql$Graphql$SelectionSet$map2, $author$project$ADSimpleGQL$Image, $author$project$Gql$DockerAPI$Object$Image$id, $author$project$Gql$DockerAPI$Object$Image$size);
+var $author$project$DASimpleGQL$imageSelection = A3($dillonkearns$elm_graphql$Graphql$SelectionSet$map2, $author$project$DASimpleGQL$Image, $author$project$Gql$DockerAPI$Object$Image$id, $author$project$Gql$DockerAPI$Object$Image$size);
 var $dillonkearns$elm_graphql$Graphql$OptionalArgument$Absent = {$: 'Absent'};
 var $dillonkearns$elm_graphql$Graphql$Internal$Encode$Json = function (a) {
 	return {$: 'Json', a: a};
@@ -6084,7 +6084,7 @@ var $author$project$Gql$DockerAPI$Query$images = F2(
 					$elm$json$Json$Decode$nullable,
 					A2($elm$core$Basics$composeR, $elm$json$Json$Decode$list, $elm$json$Json$Decode$nullable))));
 	});
-var $author$project$ADSimpleGQL$query = A2($author$project$Gql$DockerAPI$Query$images, $elm$core$Basics$identity, $author$project$ADSimpleGQL$imageSelection);
+var $author$project$DASimpleGQL$query = A2($author$project$Gql$DockerAPI$Query$images, $elm$core$Basics$identity, $author$project$DASimpleGQL$imageSelection);
 var $dillonkearns$elm_graphql$Graphql$Http$Query = F2(
 	function (a, b) {
 		return {$: 'Query', a: a, b: b};
@@ -7504,27 +7504,27 @@ var $dillonkearns$elm_graphql$Graphql$Http$send = F2(
 		return (request.withCredentials ? $elm$http$Http$riskyRequest : $elm$http$Http$request)(
 			A2($dillonkearns$elm_graphql$Graphql$Http$toHttpRequestRecord, resultToMessage, fullRequest));
 	});
-var $author$project$ADSimpleGQL$makeRequest = A2(
+var $author$project$DASimpleGQL$makeRequest = A2(
 	$dillonkearns$elm_graphql$Graphql$Http$send,
-	A2($elm$core$Basics$composeR, $krisajenkins$remotedata$RemoteData$fromResult, $author$project$ADSimpleGQL$GotResponse),
-	A2($dillonkearns$elm_graphql$Graphql$Http$queryRequest, 'http://localhost:8080/graphql', $author$project$ADSimpleGQL$query));
-var $author$project$ADSimpleGQL$init = F3(
+	A2($elm$core$Basics$composeR, $krisajenkins$remotedata$RemoteData$fromResult, $author$project$DASimpleGQL$GotResponse),
+	A2($dillonkearns$elm_graphql$Graphql$Http$queryRequest, 'http://localhost:8080/graphql', $author$project$DASimpleGQL$query));
+var $author$project$DASimpleGQL$init = F3(
 	function (_v0, _v1, _v2) {
-		return _Utils_Tuple2($krisajenkins$remotedata$RemoteData$Loading, $author$project$ADSimpleGQL$makeRequest);
+		return _Utils_Tuple2($krisajenkins$remotedata$RemoteData$Loading, $author$project$DASimpleGQL$makeRequest);
 	});
-var $author$project$ADSimpleGQL$Emptiness = {$: 'Emptiness'};
+var $author$project$DASimpleGQL$Emptiness = {$: 'Emptiness'};
 var $elm$core$Basics$always = F2(
 	function (a, _v0) {
 		return a;
 	});
-var $author$project$ADSimpleGQL$onUrlChange = $elm$core$Basics$always($author$project$ADSimpleGQL$Emptiness);
-var $author$project$ADSimpleGQL$onUrlRequest = $elm$core$Basics$always($author$project$ADSimpleGQL$Emptiness);
+var $author$project$DASimpleGQL$onUrlChange = $elm$core$Basics$always($author$project$DASimpleGQL$Emptiness);
+var $author$project$DASimpleGQL$onUrlRequest = $elm$core$Basics$always($author$project$DASimpleGQL$Emptiness);
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
-var $author$project$ADSimpleGQL$subscriptions = $elm$core$Basics$always($elm$core$Platform$Sub$none);
+var $author$project$DASimpleGQL$subscriptions = $elm$core$Basics$always($elm$core$Platform$Sub$none);
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
-var $author$project$ADSimpleGQL$update = F2(
+var $author$project$DASimpleGQL$update = F2(
 	function (msg, model) {
 		if (msg.$ === 'GotResponse') {
 			var response = msg.a;
@@ -7533,9 +7533,50 @@ var $author$project$ADSimpleGQL$update = F2(
 			return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 		}
 	});
-var $author$project$ADSimpleGQL$RunQuery = {$: 'RunQuery'};
+var $author$project$DASimpleGQL$RunQuery = {$: 'RunQuery'};
 var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$html$Html$div = _VirtualDom_node('div');
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$core$Debug$toString = _Debug_toString;
+var $author$project$DASimpleGQL$processMaybeLists = function (maybe) {
+	if (maybe.$ === 'Just') {
+		var l = maybe.a;
+		return A2(
+			$elm$html$Html$div,
+			_List_Nil,
+			A2(
+				$elm$core$List$map,
+				function (x) {
+					return A2(
+						$elm$html$Html$div,
+						_List_Nil,
+						_List_fromArray(
+							[
+								$elm$html$Html$text(
+								$elm$core$Debug$toString(x))
+							]));
+				},
+				l));
+	} else {
+		return $elm$html$Html$text('');
+	}
+};
+var $author$project$DASimpleGQL$displayResult = function (model) {
+	switch (model.$) {
+		case 'Failure':
+			var f = model.a;
+			return $elm$html$Html$text(
+				$elm$core$Debug$toString(f));
+		case 'Success':
+			var response = model.a;
+			return $author$project$DASimpleGQL$processMaybeLists(response);
+		default:
+			var other = model;
+			return $elm$html$Html$text(
+				$elm$core$Debug$toString(other));
+	}
+};
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
 };
@@ -7553,19 +7594,7 @@ var $elm$html$Html$Events$onClick = function (msg) {
 		'click',
 		$elm$json$Json$Decode$succeed(msg));
 };
-var $elm$core$Debug$toString = _Debug_toString;
-var $author$project$ADSimpleGQL$show = function (model) {
-	if (model.$ === 'Failure') {
-		var f = model.a;
-		return $elm$core$Debug$toString(f);
-	} else {
-		var response = model;
-		return 'Ciao' + $elm$core$Debug$toString(response);
-	}
-};
-var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $author$project$ADSimpleGQL$view = function (model) {
+var $author$project$DASimpleGQL$view = function (model) {
 	return {
 		body: _List_fromArray(
 			[
@@ -7579,7 +7608,7 @@ var $author$project$ADSimpleGQL$view = function (model) {
 						$elm$html$Html$button,
 						_List_fromArray(
 							[
-								$elm$html$Html$Events$onClick($author$project$ADSimpleGQL$RunQuery)
+								$elm$html$Html$Events$onClick($author$project$DASimpleGQL$RunQuery)
 							]),
 						_List_fromArray(
 							[
@@ -7591,19 +7620,18 @@ var $author$project$ADSimpleGQL$view = function (model) {
 				_List_Nil,
 				_List_fromArray(
 					[
-						$elm$html$Html$text(
-						$author$project$ADSimpleGQL$show(model))
+						$author$project$DASimpleGQL$displayResult(model)
 					]))
 			]),
 		title: 'Page title'
 	};
 };
-var $author$project$ADSimpleGQL$main = $elm$browser$Browser$application(
-	{init: $author$project$ADSimpleGQL$init, onUrlChange: $author$project$ADSimpleGQL$onUrlChange, onUrlRequest: $author$project$ADSimpleGQL$onUrlRequest, subscriptions: $author$project$ADSimpleGQL$subscriptions, update: $author$project$ADSimpleGQL$update, view: $author$project$ADSimpleGQL$view});
-_Platform_export({'ADSimpleGQL':{'init':$author$project$ADSimpleGQL$main(
+var $author$project$DASimpleGQL$main = $elm$browser$Browser$application(
+	{init: $author$project$DASimpleGQL$init, onUrlChange: $author$project$DASimpleGQL$onUrlChange, onUrlRequest: $author$project$DASimpleGQL$onUrlRequest, subscriptions: $author$project$DASimpleGQL$subscriptions, update: $author$project$DASimpleGQL$update, view: $author$project$DASimpleGQL$view});
+_Platform_export({'DASimpleGQL':{'init':$author$project$DASimpleGQL$main(
 	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
 
-  var app = Elm.ADSimpleGQL.init({ node: document.getElementById("elm") });
+  var app = Elm.DASimpleGQL.init({ node: document.getElementById("elm") });
 }
 catch (e)
 {

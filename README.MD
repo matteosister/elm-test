@@ -2,7 +2,7 @@
 
 
 ## GraphQL
-Per avviare GraphQL, fare:
+Per avviare il server GraphQL di esempio la prima volta, fare:
 
     docker pull rm3l/docker-api-graphql
 
@@ -12,6 +12,10 @@ Per avviare GraphQL, fare:
     -p 8080:8080 \
     -v /var/run/docker.sock:/var/run/docker.sock \
     rm3l/docker-api-graphql
+
+Per le volte successive alla prima:
+
+    docker restart /docker-api-graphql
 
 Per vedere le API, andare su http://localhost:8080/graphiql
 
